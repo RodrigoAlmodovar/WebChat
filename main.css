@@ -1,0 +1,40 @@
+.espacio-arriba{
+	text-align: center;
+	padding-top: 20px;
+}
+.contacto{
+    padding: 5px;
+}
+
+.zona-chat{
+	padding-top: 20px;
+  	padding-bottom: 20px;
+	margin-left: 60px;
+	width: 40%;
+	height: 600px;
+	float:center;
+	background color: #f2efdf;
+}
+.zona-contactos{
+	padding-top: 20px;
+  	padding-bottom: 20px;
+	background color: #a8b5bf;
+}
+.zona-escribir-mensaje{
+	margin: 20px;
+	padding-top: 20px;
+  	padding-bottom: 20px;
+	background-color: #a692a0;
+}
+.mi-mensaje{
+	background-color:#d8ecf7;
+    border-radius:1px solid #afcde3;
+    margin: 20px;
+    padding: 20px;
+}
+.mensaje-otro{
+	background-color:#d9edc2;
+    border-radius:1px solid #b2ce96;
+    margin: 20px;
+    padding: 20px;
+}
