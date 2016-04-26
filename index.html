@@ -6,76 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>WebChat</title>
-
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
   </head>  
   
   <body>
+  <h1 class="text-center patua">WebChat</h1>
   <nav>
-    <div class="col-md-12" id="hora" ></div>
+    <div class="col-md-12 droid-serif" id="hora" ></div>
   </nav>  
   <!-- PantallaCompleta -->
-  <div class="pantalla-entera">    
-    <aside class="zona-contactos col-md-2">
-      <div class="contacto">
-        <img src="http://placehold.it/50/55C1E7/fff&text=U">
-        <p>Usuario 1</p>
+  <div id="pantalla-entera">    
+    <aside class="zona-contactos col-md-2 col-sm-0" id="listaContactos">
+      <div id="titulo-mis-contactos">
+        <p class="text-ceter droid-serif textomedio text-center">Mis Contactos</p>
+
       </div>
-      <div class="contacto">
-        <img src="http://placehold.it/50/55C1E7/fff&text=U"/>
-        <p>Usuario 2</p>
-      </div>
-      <div class="contacto">
-        <img src="http://placehold.it/50/55C1E7/fff&text=U"/>
-        <p>Usuario 3</p>
-      </div>
+
     </aside>
-    <section class="zona-conversaciones col-md-10">
-       <!-- PantallaCompleta <div class="col-md-10">-->
-        <div class="zona-chat" float:center>
+    <section class="col-md-10 col-sm-12" id="zona-conversaciones">
+        <div id="zona-chat" float:center>
           <div id="mensajeEnviado"></div>
         </div>                
-        <div class="zona-escribir-mensaje">
+        <div id="zona-escribir-mensaje">
           <div class="col-md-8">
-          <textarea class="form-control" rows="3" id="mensajeParaEnviar"></textarea
-          ></div>
+          <textarea class="form-control" rows="3" id="mensajeParaEnviar"></textarea></div>
           <div class="col-md-4" id="botonEnviar"> 
-          <a class="btn btn-primary btn-lg" href="#" role="button" onclick="enviarMensaje(mensajeParaEnviar)">Enviar »</a></div>         
-
+          <a class="btn btn-primary btn-lg" href="#" role="button" onclick="enviarMensaje(mensajeParaEnviar);setTimeout(mensajeDeOtro, 2000)">Enviar »</a></div>   
         </div>    
     </section>
   </div>
   <footer>
-    <p class="text-center">© 2016. Rodrigo Almodóvar Lillo </p>
-  </footer>
-       
+    <p class="text-center col-md-12">© 2016. From Lost to the River, Inc. </p>
+  </footer>       
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/moment-with-locales.min.js"></script>
-    <script>
-            function enviarMensaje(mensajeParaEnviar){
-              console.log();
-              $('.zona-chat').append('<div class="mi-mensaje text-right">'+'Yo:<br>'+mensajeParaEnviar.value+'</div>');
-              mensajeDeOtro();
-            }
-            function mensajeDeOtro(){
-              $('.zona-chat').append('<div class="mensaje-otro text-left">'+'Otro:<br>'+'¿Quién eres?'+'</div>');
-            }
-    </script>
-    <script>
-      var $hora = $('#hora');
-      $hora.append( '<p class="text-right"> <span>'+moment().format("dddd, MMMM Do YYYY, h:mm:ss a")+'</span></p>');
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
