@@ -24,7 +24,6 @@ function enviarMensaje(mensajeParaEnviar){
 
 function mensajeDeOtro(){
   var nombre = arrayPersonas.results[0].name.first || 'Desconocido';
-  console.log(nombre);
   $('#zona-chat').append('<div class="mensaje-otro text-left">'+primeraLetraMayuscula(arrayPersonas.results[0].name.first)+':<br>'+'¿Quién eres?'+'</div>');
   animateMessages();
 }
@@ -41,3 +40,12 @@ $('#mensajeParaEnviar').on('keypress', function (e) {
       setTimeout(mensajeDeOtro, 2000);           
     }
 });
+/*
+$('.imgProfile').onClick('keypress', function (e) {
+    var key = e.which || e.keyCode;
+    if (key === 13) { // 13 is enter
+      enviarMensaje(mensajeParaEnviar);
+      $('#mensajeParaEnviar').value=''; 
+      setTimeout(mensajeDeOtro, 2000);           
+    }
+});*/
