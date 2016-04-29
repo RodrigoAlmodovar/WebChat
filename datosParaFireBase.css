@@ -1,0 +1,38 @@
+.mensaje-otro {
+	position: relative;
+	-moz-border-radius:    10px;
+	-webkit-border-radius: 10px;
+	border-radius:         10px;
+	background-color:#d9edc2;
+    border:5px solid #b2ce96;
+    /*border-radius: 25px;*/
+    margin: 20px;
+    width: 45%;
+}
+
+#mensaje::before{
+	content:"";
+	position: absolute;
+	right: 100%;
+	top: 26px;
+	width: 0;
+	height: 0;
+	border-top: 13px solid transparent;
+	border-right: 26px solid #b2ce96;
+	border-bottom: 13px solid transparent;
+}
+
+
+  	var datos = [
+    {"text":"Pole!", "user":"Pepe"},
+    {"text":"Qué tal", "user":"Juan"},
+    {"text":"Que haceis mañana?", "user":"Joaquin"},
+    {"text":"Hellouuu", "user":"Pepe"},
+    {"text":"Pues bien, aquí", "user":"Juan"},
+    {"text":"Vamonos atomos!", "user":"Joaquin"},
+    {"text":"Y eso?", "user":"Pepe"},
+    {"text":"Me han dicho que dicen...", "user":"Juan"},
+    {"text":"Soy el ultimo", "user":"Javier"}
+	]
+  	
+  	myFirebaseRef.child("chat").set(datos);

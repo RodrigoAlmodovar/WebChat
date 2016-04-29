@@ -4,47 +4,40 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>WebChat</title>
-    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
-  </head>  
-  
+  </head> 
   <body>
-  <h1 class="text-center patua">WebChat</h1>
+  <header class="cabecera hidden-xs"><h1 class="text-center padding-arriba patua">WebChat</h1></header> 
   <nav>
-    <div class="col-md-12 droid-serif" id="hora" ></div>
+    <div class="fecha droid-serif" id="fecha"></div>
   </nav>  
-  <!-- PantallaCompleta -->
   <div id="pantalla-entera">    
-    <aside class="zona-contactos col-md-2 col-sm-0" id="listaContactos">
-      <div id="titulo-mis-contactos">
-        <p class="text-ceter droid-serif textomedio text-center">Mis Contactos</p>
-      </div>
+    <aside class="lista-contactos col-lg-2 col-md-2 hidden-sm hidden-xs" >
+    <p class="text-center texto-medio droid-serif">Contactos</p>  
     </aside>
-    <section class="col-md-10 col-sm-12" id="zona-conversaciones">
-        <div id="zona-chat" float:center>
-          <div id="mensajeEnviado"></div>
-        </div>                
-        <div id="zona-escribir-mensaje">
-          <div class="col-md-8">
-          <textarea class="form-control" rows="3" id="mensajeParaEnviar"></textarea></div>
-          <div class="col-md-4" id="botonEnviar"> 
-          <a class="btn btn-primary btn-lg" href="#" role="button" onclick="enviarMensaje(mensajeParaEnviar);setTimeout(mensajeDeOtro, 2000)">Enviar »</a></div>   
+    <section class="zona-conversaciones col-lg-10 col-md-10 col-sm-12 col-xs-12 " id="zona-conversaciones">
+        <div class="zona-chat col-lg-12 col-md-12 col-sm-12 col-xs-12" id="zona-chat"></div>
+        <div class="zona-escribir-mensaje">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <textarea class="form-control" rows="3" id="mensajeParaEnviar"></textarea>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="botonEnviar"> 
+          <a class="btn btn-primary btn-lg" href="#" role="button" onclick="indexJS.enviarMensaje(mensajeParaEnviar);setTimeout(indexJS.mensajeAutomatico, 2000)">Enviar »</a></div>   
         </div>    
     </section>
   </div>
   <footer>
-    <p class="text-center col-md-12">© 2016. From Lost to the River, Inc. </p>
+    <p class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12" id="companyName">© 2016. From Lost to the River, Inc. </p>
   </footer>       
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/moment-with-locales.min.js"></script>
     <script src="index.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="connection.js"></script>
   </body>
 </html>
