@@ -19,7 +19,6 @@
 
   $('#fecha').append( '<p class="text-right"> <span>'+moment().format("dddd, MMMM Do YYYY")+'</span></p>');
 
-
   msgToSend.on('keypress', function (e) {
       var key = e.which || e.keyCode;
       if (key === 13) { // 13 is enter
@@ -45,7 +44,7 @@
 
   var mensajeDeOtro= function (user, msg){
     chatZone.append('<div class="contenedor-mensaje col-lg-12 col-md-12 col-sm-12 col-xs-12">\
-                          <div class="mensaje-otro text-left col-md-12 col-sm-12" id="mensajeOtros">\
+                          <div class="mensaje-otro text-left col-md-12 col-sm-12 col-xs-12" id="mensajeOtros">\
                           '+primeraLetraMayuscula(user)+':<br>'+msg+'<p class="text-right gris-suave">'+moment().format("LT")+'</p>'+'</div>');
     animateMessages();
   }
@@ -53,11 +52,10 @@
    var mensajeAutomatico= function (){
     var nombre = arrayPersonas.results[0].name.first || 'Desconocido';
     chatZone.append('<div class="contenedor-mensaje col-lg-12 col-md-12 col-sm-12 col-xs-12">\
-                          <div class="mensaje-otro text-left col-md-12 col-sm-12" id="mensajeOtros">\
+                          <div class="mensaje-otro text-left col-md-12 col-sm-12 col-xs-12" id="mensajeOtros">\
                           '+primeraLetraMayuscula(nombre)+':<br>¿Quien eres?<p class="text-right gris-suave">'+moment().format("LT")+'</p>'+'</div>');
     animateMessages();
   }
-  
 
   var primeraLetraMayuscula = function (string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
@@ -71,5 +69,4 @@
     mensajeAutomatico: mensajeAutomatico
 
   };
-
 })();
