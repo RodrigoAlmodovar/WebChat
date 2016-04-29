@@ -1,55 +1,72 @@
-var arrayPersonas;
+(function () {
 
-$.ajax({
-        url: 'http://api.randomuser.me/?results=5&nat=es',
-        dataType: 'json',
-        success: function(data){
-        	arrayPersonas = data;
-      		arrayPersonas.results.forEach(function(elem){
-	        	$('#listaContactos').append( '<div class="contacto" id="contacto'+arrayPersonas.index+'"> <img class="imgProfile centrado" id="imageContacto'+arrayPersonas.index+'" src="'+elem.picture.medium+'" onClick="resaltarContornoFoto()"/><p class="text-center">'+primeraLetraMayuscula(elem.name.first)+" "+primeraLetraMayuscula(elem.name.last)+'</p><div>');   
-        	})
-        }           
-})
-$('#hora').append( '<p class="text-right"> <span>'+moment().format("dddd, MMMM Do YYYY, h:mm:ss a")+'</span></p>');
+  var arrayPersonas;
+  var chatZone =  $('.zona-chat');
+  var msgToSend= $('#mensajeParaEnviar');
+  $.ajax({
+          url: 'http://api.randomuser.me/?results=6&nat=es',
+          dataType: 'json',
+          success: function(data){
+          	arrayPersonas = data;
+            var contactList = $('.lista-contactos');
+        		arrayPersonas.results.forEach(function(elem){
+  	        contactList.append( '<div class="contacto"' /*id="contacto '+elem.index+*/+'"> <img class="imgProfile centrado" src="\
+                                          '+elem.picture.medium+'"/><p class="text-center">'+primeraLetraMayuscula(elem.name.first)+" \
+                                          "+primeraLetraMayuscula(elem.name.last)+'</p><div>');   
+          	})
+          }           
+  })
 
-function animateMessages(){ 
-  	$("#zona-chat").animate({ scrollTop: $('#zona-chat')[0].scrollHeight}, 1000);
- }   	
+  $('#fecha').append( '<p class="text-right"> <span>'+moment().format("dddd, MMMM Do YYYY")+'</span></p>');
 
-function enviarMensaje(mensajeParaEnviar){
-   $('#zona-chat').append('<div class="mi-mensaje text-right">'+'Yo:<br>'+mensajeParaEnviar.value+'</div>');
-   mensajeParaEnviar.value=''; 
-   animateMessages();  
-}
+  msgToSend.on('keypress', function (e) {
+      var key = e.which || e.keyCode;
+      if (key === 13) { // 13 is enter
+        enviarMensaje(mensajeParaEnviar);
+        msgToSend.value=''; 
+        setTimeout(mensajeAutomatico, 2000);           
+      }
+  });
 
-function mensajeDeOtro(){
-  var nombre = arrayPersonas.results[0].name.first || 'Desconocido';
-  $('#zona-chat').append('<div class="mensaje-otro text-left">'+primeraLetraMayuscula(arrayPersonas.results[0].name.first)+':<br>'+'¿Quién eres?'+'</div>');
-  animateMessages();
-}
+  var animateMessages= function (){ 
+    	$(".zona-chat").animate({ scrollTop: chatZone[0].scrollHeight}, 1000);
+   }   	
 
-function primeraLetraMayuscula(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+  var enviarMensaje= function (mensajeParaEnviar){
+     var stringMessage = mensajeParaEnviar.value; 
+     chatZone.append('<div class="contenedor-mensaje col-lg-12 col-md-12 col-sm-12 col-xs-12"> \
+                            <div class="mi-mensaje text-right col-lg-12 col-md-12 col-sm-12 col-xs-12" \
+                            id="mensajeMio">'+'Yo:<br>'+stringMessage+'<p class="text-left gris-suave">'+moment().format("hh:mm")+'</p></div></div>');
+     firebaseJS.insertMsgOnFirebase(stringMessage); 
+     mensajeParaEnviar.value='';
+     animateMessages();  
+  }
 
-$('#mensajeParaEnviar').on('keypress', function (e) {
-    var key = e.which || e.keyCode;
-    if (key === 13) { // 13 is enter
-      enviarMensaje(mensajeParaEnviar);
-      $('#mensajeParaEnviar').value=''; 
-      setTimeout(mensajeDeOtro, 2000);           
-    }
-});
+  var mensajeDeOtro= function (user, msg){
+    chatZone.append('<div class="contenedor-mensaje col-lg-12 col-md-12 col-sm-12 col-xs-12">\
+                          <div class="mensaje-otro text-left col-md-12 col-sm-12 col-xs-12" id="mensajeOtros">\
+                          '+primeraLetraMayuscula(user)+':<br>'+msg+'<p class="text-right gris-suave">'+moment().format("LT")+'</p>'+'</div>');
+    animateMessages();
+  }
 
-function resaltarContornoFoto() {
-    $('.imgProfile')
-}
-/*
-$('.imgProfile').onClick('keypress', function (e) {
-    var key = e.which || e.keyCode;
-    if (key === 13) { // 13 is enter
-      enviarMensaje(mensajeParaEnviar);
-      $('#mensajeParaEnviar').value=''; 
-      setTimeout(mensajeDeOtro, 2000);           
-    }
-});*/
+   var mensajeAutomatico= function (){
+    var nombre = arrayPersonas.results[0].name.first || 'Desconocido';
+    chatZone.append('<div class="contenedor-mensaje col-lg-12 col-md-12 col-sm-12 col-xs-12">\
+                          <div class="mensaje-otro text-left col-md-12 col-sm-12 col-xs-12" id="mensajeOtros">\
+                          '+primeraLetraMayuscula(nombre)+':<br>¿Quien eres?<p class="text-right gris-suave">'+moment().format("LT")+'</p>'+'</div>');
+    animateMessages();
+  }
+
+  var primeraLetraMayuscula = function (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  return indexJS = {
+    primeraLetraMayuscula: primeraLetraMayuscula,
+    animateMessages: animateMessages,
+    enviarMensaje: enviarMensaje,
+    mensajeDeOtro: mensajeDeOtro,
+    mensajeAutomatico: mensajeAutomatico
+
+  };
+})();

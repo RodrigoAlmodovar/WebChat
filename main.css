@@ -1,40 +1,125 @@
-.espacio-arriba{
+.padding-arriba{
 	text-align: center;
-	padding-top: 20px;
+	padding-top: 35px;
 }
 .contacto{
     padding: 5px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.46);
+    width: 100%;
 }
-
+.gris-suave{
+	color: rgba(0, 0, 0, 0.45);
+	font-size: 12px;
+}
+.fecha{
+	padding-top: 5px;
+	padding-right: 40px;
+}
+.cabecera{
+	background-color: rgba(86, 85, 86, 0.44);
+	width: 100%;
+    display: inline-block;
+}
+.bottom{
+	vertical-align: text-bottom;
+}
+.contacto:hover{
+    cursor:pointer;
+    transition: transform 0.3s;
+    border-radius: 4px;
+    transform: scale(1.1);
+}
+.imgProfile{
+    border-radius: 50px;
+    margin-left: 22px;
+}
+.zona-conversaciones{
+	display: inline-block;
+}
 .zona-chat{
 	padding-top: 20px;
-  	padding-bottom: 20px;
 	margin-left: 60px;
-	width: 40%;
+	width: auto;
 	height: 600px;
-	float:center;
 	background color: #f2efdf;
+	overflow:auto;
 }
-.zona-contactos{
-	padding-top: 20px;
+.lista-contactos{ 
+	padding-top: 16px;
   	padding-bottom: 20px;
+  	margin-left: 15px;
 	background color: #a8b5bf;
+	border-radius: 5px;
+	border: 8px solid #667886;
+	width: 175px;
+
 }
 .zona-escribir-mensaje{
-	margin: 20px;
 	padding-top: 20px;
   	padding-bottom: 20px;
-	background-color: #a692a0;
+	background-color: rgba(86, 85, 86, 0.44);
+	bottom: 0%;
+	display: inline-block;
+	width: 100%;
+	border-radius: 5px;
+	margin-top: 65px;
+}
+.contenedor-mensaje{
+	width: 100%;
 }
 .mi-mensaje{
-	background-color:#d8ecf7;
-    border-radius:1px solid #afcde3;
-    margin: 20px;
-    padding: 20px;
+   	background-color:#d8ecf7;
+	border:5px solid #afcde3;
+   	border-radius: 10px;
+   	margin: 20px;
+   	width: auto;
+   	float: right;
 }
-.mensaje-otro{
+.mensaje-otro {
+	position: relative;
+	-moz-border-radius:    10px;
+	-webkit-border-radius: 10px;
+	border-radius:         10px;
 	background-color:#d9edc2;
-    border-radius:1px solid #b2ce96;
+    border:5px solid #b2ce96;
     margin: 20px;
-    padding: 20px;
+    width: auto;
+}
+#mensajeOtros::before{
+	content:"";
+	position: absolute;
+	right: 100%;
+	top: 26px;
+	width: 0;
+	height: 0;
+	border-top: 13px solid transparent;
+	border-right: 26px solid #b2ce96;
+	border-bottom: 13px solid transparent;
+}
+#mensajeMio::after{
+	content:"";
+	position: absolute;
+	left: 100%;
+	top: 26px;
+	width: 0;
+	height: 0;
+	border-top: 13px solid transparent;
+	border-left: 26px solid #afcde3;
+	border-bottom: 13px solid transparent;
+}
+.patua{
+	font-family: 'Patua One', cursive;
+}
+.droid-serif{
+	font-family: 'Droid Serif', serif;
+}
+.texto-medio{
+	font-size: 19px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+::-webkit-scrollbar
+{
+	border:0;
 }
